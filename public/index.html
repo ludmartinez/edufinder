@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduFinder</title>
+    <link rel="stylesheet" href="./assets/styles/tailwind.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@mdi/font@5.9.55/css/materialdesignicons.min.css"
+    />
+    <script src="./scripts/main.js" defer></script>
+  </head>
+
+  <body>
+    <header class="bg-gray-800">
+      <div class="container p-4 mx-auto">
+        <span class="font-sans text-xl font-bold text-white">
+          <i class="mdi mdi-school"></i> EduFinder
+        </span>
+      </div>
+    </header>
+    <section
+      class="bg-cover bg-no-repeat bg-left-top p-4 md:bg-contain"
+      style="background-image: url('./assets/images/header.jpg')"
+    >
+      <div class="container mx-auto">
+        <h1
+          class="
+            text-gray-800
+            font-bold
+            text-4xl text-right
+            uppercase
+            my-16
+            w-1/2
+            ml-auto
+            lg:text-6xl
+            xl:text-7xl xl:my-32
+          "
+        >
+          It's never too late to learn
+        </h1>
+        <form
+        onsubmit="filterResults(event)"
+          class="
+            flex flex-col
+            gap-4
+            mb-16
+            md:w-1/2
+            md:ml-auto
+            md:p-4
+            md:bg-gray-800
+            md:bg-opacity-30
+            md:rounded-md
+            lg:gap-10 lg:py-6
+            xl:flex-row xl:w-2/3 xl:gap-2 xl:p-4 xl:mb-32
+          "
+        >
+          <input
+            type="text"
+            id="keywordInput"
+            placeholder="Keyword"
+            class="
+              rounded-md
+              h-11
+              p-2
+              outline-none
+              border-none
+              focus:ring-2 focus:ring-gray-800 focus:ring-opacity-50
+              lg:h-14
+              xl:w-80
+            "
+          />
+          <input
+            id="cityInput"
+            type="text"
+            placeholder="City"
+            class="
+              rounded-md
+              h-11
+              p-2
+              outline-none
+              border-none
+              focus:ring-2 focus:ring-gray-800 focus:ring-opacity-50
+              lg:h-14
+              xl:w-80
+            "
+          >
+          </input>
+          <select
+            id="categorySelect"
+            class="
+              rounded-md
+              h-11
+              p-2
+              outline-none
+              border-none
+              focus:ring-2 focus:ring-gray-800 focus:ring-opacity-50
+              lg:h-14
+              xl:w-80
+            "
+          >
+            <option value="">Select Category</option>
+          </select>
+          <button
+            class="
+              bg-yellow-300
+              h-11
+              rounded-md
+              font-bold
+              text-gray-800
+              uppercase
+              hover:bg-yellow-400
+              active:bg-yellow-200
+              lg:h-14
+              xl:w-44
+            "
+            type="submit"
+          >
+            Search
+          </button>
+        </form>
+      </div>
+    </section>
+    <section class="container mx-auto py-6 px-4 xl:px-0">
+      <h2 class="text-2xl text-gray-800 font-bold text-center">
+        Your Course List
+      </h2>
+      <div class="border-2 rounded-md p-2 mt-4">
+        <span class="text-gray-800 font-bold mb-2">
+          <i class="mdi mdi-clock-outline"></i> Choose your time
+        </span>
+        <div class="flex justify-between">
+          <label class="text-center">
+            Partial
+            <input
+              type="checkbox"
+              name="parttime"
+              id="parttime"
+              class="text-gray-800 outline-none"
+              checked
+            />
+          </label>
+          <label class="text-center">
+            Evening
+            <input
+              type="checkbox"
+              name="evening"
+              id="evening"
+              class="text-gray-800 outline-none"
+              checked
+            />
+          </label>
+          <label class="text-center">
+            Full Time
+            <input
+              type="checkbox"
+              name="fulltime"
+              id="fulltime"
+              class="text-gray-800 outline-none"
+              checked
+            />
+          </label>
+          <label class="text-center">
+            Not Specified
+            <input
+              type="checkbox"
+              name="notspecified"
+              id="notspecified"
+              class="text-gray-800 outline-none"
+              checked
+            />
+          </label>
+        </div>
+      </div>
+      <!-- <div class="border-2 rounded-md p-2 mt-4">
+        <span class="text-gray-800 font-bold mb-2">
+          <i class="mdi mdi-filter-variant"></i> Choose a category
+        </span>
+        <div>
+          <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div>
+              <li>
+                <a href="#" class="flex justify-between"
+                  >Accountancy / Finance<span>474</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="flex justify-between"
+                  >Architecture<span>9</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="flex justify-between"
+                  >Arts &amp; Crafts<span>159</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="flex justify-between"
+                  >Building Energy Rating (BER)<span>1</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="flex justify-between"
+                  >Business<span>328</span></a
+                >
+              </li>
+            </div>
+
+            <div class="hidden md:block md:ml-6" id="category-block2">
+              <li>
+                <a href="#" class="flex justify-between"
+                  >CAD / Computer Aided Design<span>24</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="flex justify-between"
+                  >Childcare<span>22</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="flex justify-between"
+                  >Communications<span>202</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="flex justify-between"
+                  >Computers/ IT<span>2258</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="flex justify-between"
+                  >Driving<span>5</span></a
+                >
+              </li>
+            </div>
+
+            <div class="hidden lg:block lg:ml-6" id="category-block3">
+              <li>
+                <a href="#" class="flex justify-between"
+                  >Education/Training<span>463</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="flex justify-between"
+                  >Electronics<span>10</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="flex justify-between"
+                  >Energy / Renewable Energy<span>1</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="flex justify-between"
+                  >Engineering<span>80</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="flex justify-between"
+                  >Fashion &amp; Make Up<span>14</span></a
+                >
+              </li>
+            </div>
+
+            <button
+              class="
+                mx-auto
+                mt-2
+                px-2
+                text-xl text-gray-800
+                rounded-md
+                bg-yellow-300
+                md:col-span-2
+                lg:hidden
+              "
+              id="seemore-btn"
+              onclick="showAllCategories()"
+            >
+              <i class="mdi mdi-dots-horizontal"></i>
+            </button>
+          </ul>
+        </div>
+      </div> -->
+
+      <hr class="my-6 border" />
+
+      <div class="flex gap-4">
+        <p id="result"></p>
+        <p id="selectedCategory"></p>
+      </div>
+
+
+      <div
+        class="
+          grid grid-cols-1
+          gap-3
+          mt-4
+          md:grid-cols-2
+          lg:grid-cols-3 lg:gap-6
+          xl:grid-cols-4
+        "
+        id="coursesDataIterator"
+      ></div>
+    </section>
+    <footer class="bg-gray-800">
+      <div class="container p-4 mx-auto">
+        <div class="text-white">
+          <span class="font-sans text-xl font-bold">
+            <i class="mdi mdi-school"></i> EduFinder
+          </span>
+          <span>© 2021</span>
+        </div>
+        <br>
+        <hr class="border border-white mb-2">
+        <p class="text-white"><span>Powered by:</span> Diego Martínez</p>
+        <a href="https://github.com/ludmartinez/edufinder.git" target="_blank" class="text-yellow-300 underline">Source Code</a>
+      </div>
+    </footer>
+  </body>
+</html>

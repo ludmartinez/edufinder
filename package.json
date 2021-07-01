@@ -1,0 +1,17 @@
+{
+  "name": "edufinder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=production npx tailwindcss -o ./public/assets/styles/tailwind.css --minify",
+    "dev": "NODE_ENV=development npx tailwindcss -o ./public/assets/styles/tailwind.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/forms": "^0.3.3"
+  }
+}
