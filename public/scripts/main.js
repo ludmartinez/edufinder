@@ -266,7 +266,7 @@ function filterResults(e) {
     renderCoursesDataIterator(results);
   } else {
     coursesDataIterator.innerHTML =
-      "<img src='./assets/images/53207-empty-file.gif' alt='No results found' />";
+      "<img src='./assets/images/53207-empty-file.gif' class='mx-auto md:col-span-2' alt='No results found' />";
   }
 }
 
